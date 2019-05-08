@@ -3,8 +3,15 @@
   "version": "1.0.0",
   "description": "conduit on koa with knex",
   "main": "src/bin/server",
-  "repository": "git@github.com:gothinkster/koa-knex-realworld-example.git",
+  "repository": "git@github.com:mlaccetti/koa-knex-realworld-heroku-example.git",
   "author": "Dmitrii Solovev <dimonnwc3@gmail.com>",
+  "contributors": [
+    {
+      "name": "Michael Laccetti",
+      "email": "michael@laccetti.com",
+      "url": "https://laccetti.com/"
+    }
+  ],
   "license": "ISC",
   "scripts": {
     "start": "node src/bin/server",
@@ -63,6 +70,7 @@
     "dotenv": "8.0.0",
     "humps": "2.0.1",
     "join-js": "1.0.2",
+    "js-yaml": "3.13.1",
     "jsonwebtoken": "8.5.1",
     "kcors": "2.2.2",
     "knex": "0.16.5",
