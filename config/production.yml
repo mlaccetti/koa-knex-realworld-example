@@ -1,0 +1,9 @@
+env:
+  environment: ENVIRONMENT
+  logLevel: LOG_LEVEL
+  name: npm_package_name
+  version: npm_package_version
+
+db:
+  client: DB_CLIENT
+  connection: DATABASE_URL
