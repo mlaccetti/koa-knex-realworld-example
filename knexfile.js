@@ -57,6 +57,4 @@ const configs = {
 const selectedConfig = {}
 Object.assign(selectedConfig, configs[process.env.NODE_ENV])
 
-console.log(`Config: ${JSON.stringify(selectedConfig)}`)
-
 module.exports = selectedConfig
