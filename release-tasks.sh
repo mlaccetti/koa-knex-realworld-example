@@ -2,6 +2,9 @@
 set -x
 
 yarn install --production=false
+
+printenv > .env
+
 yarn run db:migrate
 yarn run db:load
 
