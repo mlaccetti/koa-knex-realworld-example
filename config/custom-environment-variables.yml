@@ -13,4 +13,4 @@ secret: SECRET
 
 db:
   client: DB_CLIENT
-  connection: DB_CONNECTION
+  connection: DATABASE_URL
