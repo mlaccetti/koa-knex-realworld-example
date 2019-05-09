@@ -63,3 +63,11 @@ you can just copy `.example-env`
 # How it works
 
 > Describe the general architecture of your app here
+
+# Load Testing
+
+```bash
+npm install -g artillery
+
+artillery run load_tests/basic.yml
+```
