@@ -1,0 +1,75 @@
+config:
+  target: 'https://heroku-app-scaling.herokuapp.com/api'
+  processor: './test-functions.js'
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 50
+      name: 'Warm up the application'
+    - duration: 600
+      arrivalRate: 50
+      name: 'Sustained max load'
+  defaults:
+    headers:
+      x-load-test-client: 'mlaccetti'
+  plugins:
+    cloudwatch:
+      namespace: 'heroku-metrics'
+scenarios:
+  - flow:
+    - log: 'Setting up random user.'
+    - function: 'setupData'
+    - log: 'Registering new user'
+    - post:
+        url: '/users'
+        json:
+          user:
+            email: '{{ email }}'
+            password: '{{ password }}'
+            username: '{{ username }}'
+    - log: 'Logging in user'
+    - post:
+        url: '/users/login'
+        json:
+          user:
+            email: '{{ email }}'
+            password: '{{ password }}'
+            username: '{{ username }}'
+        capture:
+          json: "$.user.token"
+          as: "token"
+    - log: 'User has signed in, getting current user'
+    - get:
+        url: '/user'
+        headers:
+          Authorization: 'Token {{ token }}'
+    - log: 'Updating user: {{ updateUser }}'
+    - put:
+        url: '/user'
+        ifTrue: updateUser
+        headers:
+          Authorization: 'Token {{ token }}'
+    - log: 'Creating article: {{ createArticle }}'
+    - post:
+        url: '/articles'
+        ifTrue: createArticle
+        json:
+          article:
+            title: 'How to train your dragon'
+            description: 'Ever wonder how?'
+            body: 'Very carefully.'
+            tagList:
+              - 'dragons'
+              - 'training'
+        headers:
+          Authorization: 'Token {{ token }}'
+    - log: 'Getting all articles'
+    - get:
+        url: '/articles'
+        headers:
+          Authorization: 'Token {{ token }}'
+    - log: 'Getting dragon articles'
+    - get:
+        url: '/articles?tag=dragons'
+        headers:
+          Authorization: 'Token {{ token }}'
