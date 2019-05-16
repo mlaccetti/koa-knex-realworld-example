@@ -66,8 +66,22 @@ you can just copy `.example-env`
 
 # Load Testing
 
+## Locally
+
 ```bash
 npm install -g artillery
 
-artillery run load_tests/basic.yml
+artillery run load_tests/scripts/basic.yml
+```
+
+## Using Lambdas
+
+```bash
+npm install -g serverless-artillery
+
+cd load_tests
+npm install
+
+slsart deploy
+slsart invoke -p scripts/basic.yml
 ```
