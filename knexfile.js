@@ -32,11 +32,13 @@ const options = {
 }
 
 if (dbClient !== "sqlite3") {
+  const pg = require("pg")
+  pg.defaults.ssl = true
+
   options.pool = {
     min: 2,
     max: 10,
   }
-  options.ssl = true
 }
 
 const configs = {
