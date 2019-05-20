@@ -6,9 +6,11 @@
   "dependencies": {
     "artillery": "git+https://github.com/Nordstrom/artillery.git#96552a4656ba7d1c32d8868754b1f1ab5299f8b8",
     "artillery-plugin-cloudwatch": "0.0.2",
+    "global": "^4.3.2",
     "js-yaml": "3.13.1",
     "lodash.merge": "4.6.1",
     "lodash.omit": "4.5.0",
+    "serverless": "^1.43.0",
     "util-promisify": "2.1.0"
   }
 }

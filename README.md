@@ -20,11 +20,11 @@ For more information on how to this works with other frontends/backends, head ov
 
 ## Usage
 
-1. run `npm start` to start server
+1. run `yarn run start` to start server
 
 ## Testing
 
-1. run `npm test` for tests
+1. run `yarn run test` for tests
 
 ## Server Configuration (optional)
 
@@ -69,7 +69,7 @@ you can just copy `.example-env`
 ## Locally
 
 ```bash
-npm install -g artillery
+yarn global add artillery
 
 artillery run load_tests/scripts/basic.yml
 ```
@@ -77,10 +77,10 @@ artillery run load_tests/scripts/basic.yml
 ## Using Lambdas
 
 ```bash
-npm install -g serverless-artillery
+yarn global add serverless serverless-artillery
 
 cd load_tests
-npm install
+yarn install
 
 slsart deploy
 slsart invoke -p scripts/basic.yml
