@@ -36,6 +36,7 @@ if (dbClient !== "sqlite3") {
     min: 2,
     max: 10,
   }
+  options.ssl = true
 }
 
 const configs = {
