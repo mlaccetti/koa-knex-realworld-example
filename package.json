@@ -81,6 +81,7 @@
     "koa-logger": "3.2.0",
     "koa-response-time": "2.1.0",
     "koa-router": "7.4.0",
+    "koa-static": "^5.0.0",
     "koa-x-request-id": "2.0.0",
     "lodash": "4.17.11",
     "mississippi": "4.0.0",

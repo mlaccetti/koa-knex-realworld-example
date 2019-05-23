@@ -83,5 +83,5 @@ cd load_tests
 yarn install
 
 slsart deploy
-slsart invoke -p scripts/basic.yml
+slsart invoke -p basic.yml
 ```
