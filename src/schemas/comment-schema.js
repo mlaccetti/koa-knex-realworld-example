@@ -1,34 +1,34 @@
-const yup = require("yup")
-const timeStampSchema = require("./time-stamp-schema")
-const isUUID = require("validator/lib/isUUID")
+const yup = require('yup');
+const timeStampSchema = require('./time-stamp-schema');
+const isUUID = require('validator/lib/isUUID');
 
 const commentSchema = yup
   .object()
   .shape({
     id: yup.string().test({
-      name: "id",
-      message: "${path} must be uuid", // eslint-disable-line
-      test: value => (value ? isUUID(value) : true),
+      name: 'id',
+      message: '${path} must be uuid', // eslint-disable-line
+      test: (value) => (value ? isUUID(value) : true)
     }),
 
     author: yup.string().test({
-      name: "user",
-      message: "${path} must be uuid", // eslint-disable-line
-      test: value => (value ? isUUID(value) : true),
+      name: 'user',
+      message: '${path} must be uuid', // eslint-disable-line
+      test: (value) => (value ? isUUID(value) : true)
     }),
 
     article: yup.string().test({
-      name: "article",
-      message: "${path} must be uuid", // eslint-disable-line
-      test: value => (value ? isUUID(value) : true),
+      name: 'article',
+      message: '${path} must be uuid', // eslint-disable-line
+      test: (value) => (value ? isUUID(value) : true)
     }),
 
     body: yup
       .string()
       .required()
-      .trim(),
+      .trim()
   })
   .noUnknown()
-  .concat(timeStampSchema)
+  .concat(timeStampSchema);
 
-module.exports = commentSchema
+module.exports = commentSchema;

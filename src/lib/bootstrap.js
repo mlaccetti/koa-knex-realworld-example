@@ -1,3 +1,3 @@
-require("dotenv").config()
-require("./env")
-require("config")
+require('dotenv').config();
+require('./env');
+require('config');

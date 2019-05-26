@@ -1,5 +1,5 @@
-const yup = require("yup")
-const isISO8601 = require("validator/lib/isISO8601")
+const yup = require('yup');
+const isISO8601 = require('validator/lib/isISO8601');
 
 const timeStampsSchema = yup
   .object()
@@ -8,15 +8,12 @@ const timeStampsSchema = yup
       .string()
       .required()
       .test({
-        name: "createdAt",
-        message: "${path} must be valid ISO8601 date", // eslint-disable-line
-        test: value =>
-          value ? isISO8601(new Date(value).toISOString()) : true,
+        name: 'createdAt',
+        message: '${path} must be valid ISO8601 date', // eslint-disable-line
+        test: (value) => (value ? isISO8601(new Date(value).toISOString()) : true)
       })
       .transform(function(value) {
-        return this.isType(value) && value !== null
-          ? new Date(value).toISOString()
-          : value
+        return this.isType(value) && value !== null ? new Date(value).toISOString() : value;
       })
       .default(() => new Date().toISOString()),
 
@@ -24,18 +21,15 @@ const timeStampsSchema = yup
       .string()
       .required()
       .test({
-        name: "updatedAt",
-        message: "${path} must be valid ISO8601 date", // eslint-disable-line
-        test: value =>
-          value ? isISO8601(new Date(value).toISOString()) : true,
+        name: 'updatedAt',
+        message: '${path} must be valid ISO8601 date', // eslint-disable-line
+        test: (value) => (value ? isISO8601(new Date(value).toISOString()) : true)
       })
       .transform(function(value) {
-        return this.isType(value) && value !== null
-          ? new Date(value).toISOString()
-          : value
+        return this.isType(value) && value !== null ? new Date(value).toISOString() : value;
       })
-      .default(() => new Date().toISOString()),
+      .default(() => new Date().toISOString())
   })
-  .noUnknown()
+  .noUnknown();
 
-module.exports = timeStampsSchema
+module.exports = timeStampsSchema;

@@ -1,151 +1,151 @@
 exports.up = function(knex) {
   return knex.schema
 
-    .createTable("users", function(table) {
+    .createTable('users', function(table) {
       table
-        .uuid("id")
+        .uuid('id')
         .unique()
         .primary()
-        .notNullable()
+        .notNullable();
       table
-        .string("email")
+        .string('email')
         .unique()
-        .notNullable()
+        .notNullable();
       table
-        .string("username")
+        .string('username')
         .unique()
-        .notNullable()
-      table.string("image").defaultTo("")
-      table.text("bio").defaultTo("")
-      table.string("password").notNullable()
-      table.timestamps(true, true)
+        .notNullable();
+      table.string('image').defaultTo('');
+      table.text('bio').defaultTo('');
+      table.string('password').notNullable();
+      table.timestamps(true, true);
     })
 
-    .createTable("articles", function(table) {
+    .createTable('articles', function(table) {
       table
-        .uuid("id")
+        .uuid('id')
         .unique()
         .primary()
-        .notNullable()
+        .notNullable();
       table
-        .string("slug")
+        .string('slug')
         .unique()
-        .notNullable()
-      table.string("title").notNullable()
-      table.text("body").notNullable()
-      table.string("description").notNullable()
+        .notNullable();
+      table.string('title').notNullable();
+      table.text('body').notNullable();
+      table.string('description').notNullable();
       table
-        .integer("favorites_count")
+        .integer('favorites_count')
         .notNullable()
-        .defaultTo(0)
+        .defaultTo(0);
       table
-        .uuid("author")
+        .uuid('author')
         .notNullable()
-        .references("users.id")
-        .onDelete("CASCADE")
-      table.timestamps(true, true)
+        .references('users.id')
+        .onDelete('CASCADE');
+      table.timestamps(true, true);
     })
 
-    .createTable("comments", function(table) {
+    .createTable('comments', function(table) {
       table
-        .uuid("id")
+        .uuid('id')
         .unique()
         .primary()
-        .notNullable()
-      table.text("body").notNullable()
+        .notNullable();
+      table.text('body').notNullable();
       table
-        .uuid("author")
+        .uuid('author')
         .notNullable()
-        .references("users.id")
-        .onDelete("CASCADE")
+        .references('users.id')
+        .onDelete('CASCADE');
       table
-        .uuid("article")
+        .uuid('article')
         .notNullable()
-        .references("articles.id")
-        .onDelete("CASCADE")
-      table.timestamps(true, true)
+        .references('articles.id')
+        .onDelete('CASCADE');
+      table.timestamps(true, true);
     })
 
-    .createTable("favorites", function(table) {
+    .createTable('favorites', function(table) {
       table
-        .uuid("id")
+        .uuid('id')
         .unique()
         .primary()
-        .notNullable()
+        .notNullable();
       table
-        .uuid("user")
+        .uuid('user')
         .notNullable()
-        .references("users.id")
-        .onDelete("CASCADE")
+        .references('users.id')
+        .onDelete('CASCADE');
       table
-        .uuid("article")
+        .uuid('article')
         .notNullable()
-        .references("articles.id")
-        .onDelete("CASCADE")
-      table.timestamps(true, true)
+        .references('articles.id')
+        .onDelete('CASCADE');
+      table.timestamps(true, true);
     })
 
-    .createTable("followers", function(table) {
+    .createTable('followers', function(table) {
       table
-        .uuid("id")
+        .uuid('id')
         .unique()
         .primary()
-        .notNullable()
+        .notNullable();
       table
-        .uuid("user")
+        .uuid('user')
         .notNullable()
-        .references("users.id")
-        .onDelete("CASCADE")
+        .references('users.id')
+        .onDelete('CASCADE');
       table
-        .uuid("follower")
+        .uuid('follower')
         .notNullable()
-        .references("users.id")
-        .onDelete("CASCADE")
-      table.unique(["user", "follower"])
-      table.timestamps(true, true)
+        .references('users.id')
+        .onDelete('CASCADE');
+      table.unique(['user', 'follower']);
+      table.timestamps(true, true);
     })
 
-    .createTable("tags", function(table) {
+    .createTable('tags', function(table) {
       table
-        .uuid("id")
+        .uuid('id')
         .unique()
         .primary()
-        .notNullable()
+        .notNullable();
       table
-        .string("name")
+        .string('name')
         .unique()
-        .notNullable()
-      table.timestamps(true, true)
+        .notNullable();
+      table.timestamps(true, true);
     })
 
-    .createTable("articles_tags", function(table) {
+    .createTable('articles_tags', function(table) {
       table
-        .uuid("id")
+        .uuid('id')
         .unique()
         .primary()
-        .notNullable()
+        .notNullable();
       table
-        .uuid("article")
+        .uuid('article')
         .notNullable()
-        .references("articles.id")
-        .onDelete("CASCADE")
+        .references('articles.id')
+        .onDelete('CASCADE');
       table
-        .uuid("tag")
+        .uuid('tag')
         .notNullable()
-        .references("tags.id")
-        .onDelete("CASCADE")
-      table.unique(["tag", "article"])
-      table.timestamps(true, true)
-    })
-}
+        .references('tags.id')
+        .onDelete('CASCADE');
+      table.unique(['tag', 'article']);
+      table.timestamps(true, true);
+    });
+};
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists("users")
-    .dropTableIfExists("articles")
-    .dropTableIfExists("comments")
-    .dropTableIfExists("favorites")
-    .dropTableIfExists("followers")
-    .dropTableIfExists("tags")
-    .dropTableIfExists("articles_tags")
-}
+    .dropTableIfExists('users')
+    .dropTableIfExists('articles')
+    .dropTableIfExists('comments')
+    .dropTableIfExists('favorites')
+    .dropTableIfExists('followers')
+    .dropTableIfExists('tags')
+    .dropTableIfExists('articles_tags');
+};
