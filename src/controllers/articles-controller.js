@@ -2,12 +2,16 @@ const slug = require('slug');
 const uuid = require('uuid');
 const humps = require('humps');
 const _ = require('lodash');
+const Cache = require('memory-cache').Cache;
+const crypto = require('crypto');
 const comments = require('./comments-controller');
 const { ValidationError } = require('../lib/errors');
 const db = require('../lib/db');
 const joinJs = require('join-js').default;
 const { getSelect } = require('../lib/utils');
 const { articleFields, userFields, relationsMaps } = require('../lib/relations-map');
+
+const memCache = new Cache();
 
 module.exports = {
   async bySlug(slug, ctx, next) {
@@ -84,6 +88,16 @@ module.exports = {
     const { user } = ctx.state;
     const { offset, limit, tag, author, favorited } = ctx.query;
 
+    const hash = crypto.createHash('sha256');
+    hash.update(JSON.stringify(ctx.query));
+
+    const key = '__koa__' + hash.digest('hex');
+    const cacheContent = memCache.get(key);
+    if (cacheContent) {
+      ctx.body = cacheContent;
+      return;
+    }
+
     let articlesQuery = db('articles')
       .select(
         ...getSelect('articles', 'article', articleFields),
@@ -159,6 +173,8 @@ module.exports = {
 
     let articlesCount = countRes.count || countRes['count(*)'];
     articlesCount = Number(articlesCount);
+
+    memCache.put(key, { articles, articlesCount });
 
     ctx.body = { articles, articlesCount };
   },

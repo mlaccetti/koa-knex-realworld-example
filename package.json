@@ -100,6 +100,7 @@
     "koa-static": "^5.0.0",
     "koa-x-request-id": "2.0.0",
     "lodash": "4.17.11",
+    "memory-cache": "^0.2.0",
     "mississippi": "4.0.0",
     "p-event": "4.1.0",
     "pg": "7.11.0",

@@ -13,3 +13,4 @@ secret: secret
 
 db:
   client: sqlite3
+  
