@@ -40,7 +40,7 @@ if (dbClient !== 'sqlite3') {
 
   options.pool = {
     min: 2,
-    max: 20
+    max: 18
   };
 }
 
