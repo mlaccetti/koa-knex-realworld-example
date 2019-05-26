@@ -14,7 +14,7 @@ For more information on how to this works with other frontends/backends, head ov
 
 ## Installation
 
-1. Instal [Node.JS](https://nodejs.org/en/download/package-manager/) latest version
+1. Install [Node.JS](https://nodejs.org/en/download/package-manager/) latest version
 2. Clone this repo
 3. Install dependencies, just run in project folder: `npm i` or `yarn`
 
